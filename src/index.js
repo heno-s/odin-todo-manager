@@ -7,6 +7,7 @@ initPage();
 
 const addTask = document.querySelector(".add-task");
 const todoForm = document.querySelector(".todo-form");
+const todosContainer = document.querySelector(".todos");
 
 addTask.addEventListener("click", (evt) => {
     displayController.toggleTodoForm();
@@ -25,4 +26,12 @@ todoForm.addEventListener("submit", (evt) => {
     Project.active.addTodo(todo);
     todoForm.reset();
     displayController.toggleTodoForm();
+});
+
+todosContainer.addEventListener("click", (evt) => {
+    if (evt.target.type === "checkbox") {
+        const todoDOM = evt.target.closest(".todo");
+        const todo = Project.active.getTodo(todoDOM.id);
+        todo.checked = evt.target.checked;
+    }
 });

@@ -17,8 +17,8 @@ export default class Project {
         this.#todos.splice(index, 1);
     }
 
-    getTodo(index) {
-        return this.#todos[index];
+    getTodo(id) {
+        return this.#todos.find((todo) => todo.id === id);
     }
 
     get id() {
