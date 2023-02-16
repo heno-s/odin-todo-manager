@@ -72,7 +72,7 @@ function _createTodo(todo) {
     const deleteIcon = document.createElement("div");
     deleteIcon.classList.add("mdi");
     deleteIcon.classList.add("mdi-trash-can-outline");
-
+    console.log(todoBody);
     todoDOM.appendChild(priorityDOM);
     todoDOM.appendChild(todoBody);
     todoDOM.appendChild(deleteIcon);
@@ -203,6 +203,8 @@ function _createTodoBody(title, description, dueDate) {
 
         todoBody.appendChild(todoDueDate);
     }
+
+    return todoBody;
 }
 
 function _setPriority(priorityDOM, priority) {
