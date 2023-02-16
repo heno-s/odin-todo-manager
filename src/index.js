@@ -57,7 +57,7 @@ todoForm.addEventListener("submit", (evt) => {
         todoForm.title.value,
         todoForm.description.value,
         todoForm.priority.value,
-        todoForm.dueDate.value,
+        todoForm.dueDate.valueAsDate,
     ];
 
     const todo = new Todo(title, description, priority, dueDate);
