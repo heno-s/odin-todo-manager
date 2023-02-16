@@ -1,1 +1,3 @@
-console.log("testing webpack");
+import initPage from "./loadInit";
+
+initPage();

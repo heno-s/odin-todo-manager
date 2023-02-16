@@ -1,30 +1,29 @@
-function setActiveProject(project) {
-    _clearTodos();
-    const todos = project.todos;
-    todos.forEach(appendTodo);
+function appendProject(project) {
+    const projectDOM = _createProject(project);
+    const projects = document.querySelector(".projects");
+    projects.appendChild(projectDOM);
 }
 
-function appendTodo(todo) {
-    const todoDOM = _createTodo(todo);
-    const container = document.querySelector(".todos");
+function _createProject(project) {
+    const { title, id } = project;
+    const projectDOM = document.createElement("li");
+    projectDOM.classList.add("project");
+    projectDOM.id = id;
 
-    container.appendChild(todoDOM);
-}
+    const projectName = document.createElement("span");
+    projectName.classList.add("project-name");
+    projectName.textContent = title;
 
-function _createTodo(todo) {
-    const { title, description, priority, dueDate } = todo;
-    const todoDOM = document.createElement("div");
-    todoDOM.classList.add("todo");
+    const deleteIcon = document.createElement("div");
+    deleteIcon.classList.add("mdi");
+    deleteIcon.classList.add("mdi-trash-can-outline");
 
-    return todoDOM;
-}
+    projectDOM.appendChild(projectName);
+    projectDOM.appendChild(deleteIcon);
 
-function _clearTodos() {
-    const container = document.querySelector(".todos");
-    container.innerHTML = "";
+    return projectDOM;
 }
 
 export default {
-    setActiveProject,
-    appendTodo,
+    appendProject,
 };

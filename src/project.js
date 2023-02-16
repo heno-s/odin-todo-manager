@@ -5,31 +5,28 @@ export default class Project {
     #id = 0;
     constructor(title) {
         this.title = title;
-        this.setActive();
-        this.#id = "id" + new Date().getTime();
+        this.#id = "id" + Math.random().toString(16).slice(2);
     }
 
     addTodo(todo) {
         this.#todos.push(todo);
-        displayController.appendTodo(todo);
     }
 
     removeTodo(index) {
         this.#todos.splice(index, 1);
-        displayController.showProjectTodos(this);
     }
 
     getTodo(index) {
         return this.#todos[index];
     }
 
-    setActive() {
-        displayController.setActiveProject(this);
-        Project.#active = this;
-    }
-
     get id() {
         return this.#id;
+    }
+
+    static setActive(project) {
+        Project.#active = project;
+        displayController.setActiveProject(project);
     }
 
     get todos() {
