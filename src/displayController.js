@@ -186,6 +186,7 @@ function createEditForm(todo) {
         "click",
         (e) => {
             editForm.remove();
+            todoDOM.classList.remove("hide");
         },
         { once: true }
     );
