@@ -24,6 +24,95 @@ function _createProject(project) {
     return projectDOM;
 }
 
+function setActiveProject(project) {
+    const projectDOM = document.getElementById(project.id);
+    projectDOM.classList.add("active");
+    _removeActiveProject();
+    const todos = project.todos;
+    todos.forEach(appendTodo);
+}
+
+function appendTodo(todo) {
+    const todoDOM = _createTodo(todo);
+    const container = document.querySelector(".todos");
+
+    container.appendChild(todoDOM);
+}
+
+function _createTodo(todo) {
+    const { title, description, priority, dueDate } = todo;
+    const todoDOM = document.createElement("div");
+    todoDOM.classList.add("todo");
+
+    const priorityDOM = document.createElement("input");
+    priorityDOM.type = "checkbox";
+    priorityDOM.classList.add("priority");
+
+    switch (priority) {
+        case 0:
+            priorityDOM.classList.add("priority-low");
+            break;
+        case 1:
+            priorityDOM.classList.add("priority-medium");
+            break;
+
+        case 2:
+            priorityDOM.classList.add("priority-high");
+            break;
+        default:
+            priorityDOM.classList.add("priority-low");
+            break;
+    }
+
+    const todoBody = document.createElement("div");
+    todoBody.classList.add("todo-body");
+
+    const todoTitle = document.createElement("div");
+    todoTitle.classList.add("todo-title");
+    todoTitle.textContent = title;
+
+    const todoDescription = document.createElement("div");
+    todoDescription.classList.add("todo-description");
+    todoDescription.textContent = description.substr(0, 30);
+
+    const todoDueDate = document.createElement("div");
+    todoDueDate.classList.add("todo-due-date");
+
+    const calendar = document.createElement("div");
+    calendar.classList.add("mdi");
+    calendar.classList.add("mdi-calendar-clock-outline");
+
+    const todoDate = document.createElement("div");
+    todoDate.classList.add("todo-date");
+    todoDate.textContent = dueDate;
+
+    todoDueDate.appendChild(calendar);
+    todoDueDate.appendChild(todoDate);
+
+    todoBody.appendChild(todoTitle);
+    todoBody.appendChild(todoDescription);
+    todoBody.appendChild(todoDueDate);
+
+    const deleteIcon = document.createElement("div");
+    deleteIcon.classList.add("mdi");
+    deleteIcon.classList.add("mdi-trash-can-outline");
+
+    todoDOM.appendChild(priorityDOM);
+    todoDOM.appendChild(todoBody);
+    todoDOM.appendChild(deleteIcon);
+
+    return todoDOM;
+}
+
+function _removeActiveProject() {
+    const activeProject = document.querySelector(".project.active");
+    activeProject.classList.remove(".ative");
+    const container = document.querySelector(".todos");
+    container.innerHTML = "";
+}
+
 export default {
     appendProject,
+    setActiveProject,
+    appendTodo,
 };
