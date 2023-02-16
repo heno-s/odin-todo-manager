@@ -1,3 +1,5 @@
+import displayController from "./displayController.js";
+
 export default class Project {
     #todos = [];
     #id = 0;
@@ -9,10 +11,12 @@ export default class Project {
 
     addTodo(todo) {
         this.#todos.push(todo);
+        displayController.appendTodo(todo);
     }
 
     removeTodo(index) {
         this.#todos.splice(index, 1);
+        displayController.showProjectTodos(this);
     }
 
     getTodo(index) {
@@ -20,6 +24,7 @@ export default class Project {
     }
 
     setActive() {
+        displayController.setActiveProject(this);
         Project.#active = this;
     }
 
