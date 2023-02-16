@@ -8,10 +8,27 @@
             content="width=device-width, initial-scale=1.0"
         />
         <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@mdi/font@7.1.96/css/materialdesignicons.min.css"
+        />
         <title>Todo manager</title>
     </head>
     <body>
-        <div class="sidebar"></div>
+        <div class="sidebar">
+            <h1>Projects</h1>
+
+            <ul class="projects">
+                <li class="project">
+                    <span class="project-name">my day</span>
+                    <div class="mdi mdi-trash-can-outline"></div>
+                </li>
+                <li class="project">
+                    <span class="project-name">tomorrow</span>
+                    <div class="mdi mdi-trash-can-outline"></div>
+                </li>
+            </ul>
+        </div>
         <main></main>
         <script src="main.js"></script>
     </body>
