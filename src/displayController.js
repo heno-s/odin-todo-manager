@@ -58,7 +58,8 @@ function appendTodo(todo) {
 }
 
 function _createTodo(todo) {
-    const { title, description, priority, dueDate, id } = todo;
+    const { title, description, priority, dueDate, id, checked } =
+        todo;
     const todoDOM = document.createElement("div");
     todoDOM.classList.add("todo");
 
@@ -66,6 +67,7 @@ function _createTodo(todo) {
     priorityDOM.type = "checkbox";
     priorityDOM.classList.add("priority");
     _setPriority(priorityDOM, priority);
+    priorityDOM.checked = checked;
 
     const todoBody = _createTodoBody(title, description, dueDate);
 
