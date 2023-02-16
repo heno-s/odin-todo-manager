@@ -18,20 +18,11 @@
         <div class="sidebar">
             <h1>Projects</h1>
 
-            <ul class="projects">
-                <li class="project">
-                    <span class="project-name">my day</span>
-                    <div class="mdi mdi-trash-can-outline"></div>
-                </li>
-                <li class="project">
-                    <span class="project-name">tomorrow</span>
-                    <div class="mdi mdi-trash-can-outline"></div>
-                </li>
-            </ul>
-            <form class="project-form">
-                <input type="text" name="projectTitle" />
+            <ul class="projects"></ul>
+            <form class="project-form hide">
+                <input type="text" name="projectTitle" required />
             </form>
-            <div class="add-project hide"></div>
+            <div class="add-project"></div>
         </div>
         <main>
             <div class="todos">
@@ -74,7 +65,7 @@
                     <div class="mdi mdi-trash-can-outline"></div>
                 </div>
             </div>
-            <form class="todo-form">
+            <form class="todo-form hide">
                 <input type="text" name="title" placeholder="title" />
                 <textarea
                     name="description"
