@@ -70,7 +70,23 @@
                     <div class="mdi mdi-trash-can-outline"></div>
                 </div>
             </div>
-            <form class="todo-form"></form>
+            <form class="todo-form">
+                <input type="text" name="title" placeholder="title" />
+                <textarea
+                    name="description"
+                    rows="2"
+                    placeholder="description"
+                ></textarea>
+                <div class="form-bottom-row">
+                    <select name="priority">
+                        <option value="0">low</option>
+                        <option value="1">medium</option>
+                        <option value="2">high</option>
+                    </select>
+                    <input type="date" name="dueDate" />
+                    <button id="submit">save</button>
+                </div>
+            </form>
             <div class="add-task">
                 <div class="plus-sign"></div>
                 <span>Add task</span>

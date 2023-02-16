@@ -149,6 +149,58 @@ h1 {
     font-size: 2rem;
 }
 
+.todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: rgb(255 255 255 / 0.5);
+    margin-bottom: 10px;
+    padding: 20px 20px 20px 46px;
+}
+
+.todo-form :is(input, textarea) {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.todo-form textarea {
+    resize: none;
+}
+
+.todo-form textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.todo-form [name="title"] {
+    font-size: 1.2rem;
+}
+
+.todo-form [name="description"] {
+    font-size: 1rem;
+}
+
+.form-bottom-row {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.todo-form [name="priority"] {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.todo-form button {
+    margin-left: auto;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6fb4e7;
+}
+
 .add-task {
     cursor: pointer;
     color: #f8f034;
