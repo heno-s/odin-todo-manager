@@ -204,9 +204,33 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    position: relative;
     background-color: rgb(255 255 255 / 0.5);
     padding: 20px 20px 20px 46px;
     margin-bottom: 10px;
+}
+
+.close-form {
+    cursor: pointer;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 24px;
+    right: 30px;
+    display: grid;
+    place-items: center;
+}
+
+.close-form::before,
+.close-form::after {
+    content: "";
+    width: 24px;
+    height: 6px;
+    position: absolute;
+    background-color: #fff;
+}
+
+.close-form::after {
+    transform: rotateZ(90deg);
 }
 
 .todo-form :is(input, textarea) {
@@ -225,6 +249,7 @@ h1 {
 
 .todo-form [name="title"] {
     font-size: 1.2rem;
+    width: 95%;
 }
 
 .todo-form [name="description"] {
