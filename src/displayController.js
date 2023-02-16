@@ -25,9 +25,27 @@ function _createProject(project) {
 }
 
 function setActiveProject(project) {
+    _removeActiveProject();
     const projectDOM = document.getElementById(project.id);
     projectDOM.classList.add("active");
-    _removeActiveProject();
+    _showProjectTodos(project);
+}
+
+function _removeActiveProject() {
+    const activeProject = document.querySelector(".project.active");
+    if (!activeProject) {
+        return;
+    }
+    activeProject.classList.remove(".ative");
+    _removeCurrentTodos();
+}
+
+function _removeCurrentTodos() {
+    const container = document.querySelector(".todos");
+    container.innerHTML = "";
+}
+
+function _showProjectTodos(project) {
     const todos = project.todos;
     todos.forEach(appendTodo);
 }
@@ -76,7 +94,10 @@ function _createTodo(todo) {
     if (description) {
         const todoDescription = document.createElement("div");
         todoDescription.classList.add("todo-description");
-        todoDescription.textContent = description.substr(0, 30);
+        todoDescription.textContent =
+            description.substr(0, 50) +
+            (description.length > 50 ? "..." : "");
+
         todoBody.appendChild(todoDescription);
     }
     if (dueDate) {
@@ -110,7 +131,7 @@ function _createTodo(todo) {
     return todoDOM;
 }
 
-function toggleTodoForm() {
+function toggleTodoAddForm() {
     const addTask = document.querySelector(".add-task");
     addTask.classList.toggle("hide");
 
@@ -118,16 +139,59 @@ function toggleTodoForm() {
     todoForm.classList.toggle("hide");
 }
 
-function _removeActiveProject() {
-    const activeProject = document.querySelector(".project.active");
-    activeProject.classList.remove(".ative");
-    const container = document.querySelector(".todos");
-    container.innerHTML = "";
+function _cloneTodoForm() {
+    const todoForm = document
+        .querySelector(".todo-form")
+        .cloneNode(true);
+    todoForm.reset();
+    todoForm.classList.remove("hide");
+
+    return todoForm;
+}
+
+function showEditForm(todo) {
+    if (document.querySelector(".todo-form").dataset.id) {
+        return null;
+    }
+    const { title, description, priority, dueDate, id } = todo;
+    const todoDOM = document.getElementById(todo.id);
+    const todoForm = _cloneTodoForm();
+
+    todoForm.dataset.id = id;
+    todoForm.title.value = title;
+    todoForm.description.value = description;
+    todoForm.priority.value = priority;
+    todoForm.dueDate.valueAsDate = dueDate;
+
+    todoDOM.insertAdjacentElement("afterend", todoForm);
+    todoDOM.classList.add("hide");
+
+    return todoForm;
+}
+
+function editTodo(todo) {
+    const { title, description, priority, id, dueDate } = todo;
+
+    const todoDOM = document.getElementById(id);
+    const todoForm = document.querySelector(".todos .todo-form");
+
+    todoDOM.querySelector(".todo-title").textContent = title;
+    todoDOM.querySelector(".todo-description").textContent =
+        description.substr(0, 50) +
+        (description.length > 50 ? "..." : "");
+    todoDOM.querySelector(".priority").value = priority;
+    todoDOM.querySelector(".todo-date").valueAsDate = dueDate;
+
+    todoForm.remove();
+    todoDOM.classList.remove("hide");
+    return true;
 }
 
 export default {
-    toggleTodoForm,
+    toggleTodoAddForm,
     appendProject,
     setActiveProject,
     appendTodo,
+    showEditForm,
+    editTodo,
 };
