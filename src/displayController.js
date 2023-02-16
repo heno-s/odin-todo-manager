@@ -175,16 +175,46 @@ function editTodo(todo) {
     const { title, description, priority, id, dueDate } = todo;
 
     const todoDOM = document.getElementById(id);
+    const todoBody = todoDOM.querySelector(".todo-body");
     const todoForm = document.querySelector(".todos .todo-form");
 
     todoDOM.querySelector(".todo-title").textContent = title;
-    todoDOM.querySelector(".todo-description").textContent =
-        description.substr(0, 50) +
-        (description.length > 50 ? "..." : "");
     todoDOM.querySelector(".priority").value = priority;
+    let descriptionDOM = todoDOM.querySelector(".todo-description");
+    let dateDOM = todoDOM.querySelector(".todo-due-date");
 
-    if (dueDate) {
-        todoDOM.querySelector(".todo-date").valueAsDate = dueDate;
+    if (!description) {
+        descriptionDOM && descriptionDOM.remove();
+    } else {
+        if (!descriptionDOM) {
+            descriptionDOM = document.createElement("div");
+            descriptionDOM.classList.add("todo-description");
+            todoBody.appendChild(description);
+        }
+
+        descriptionDOM.textContent =
+            description.substr(0, 50) +
+            (description.length > 50 ? "..." : "");
+    }
+
+    if (!dueDate) {
+        dateDOM && dateDOM.remove();
+    } else {
+        if (!dateDOM) {
+            dateDOM = document.createElement("div");
+            dateDOM.classList.add("todo-due-date");
+            const calendar = document.createElement("div");
+            calendar.classList.add("mdi");
+            calendar.classList.add("mdi-calendar-clock-outline");
+
+            const todoDate = document.createElement("div");
+            todoDate.classList.add("todo-date");
+            todoDate.textContent = dueDate;
+
+            dateDOM.appendChild(calendar);
+            dateDOM.appendChild(todoDate);
+        }
+        dateDOM.querySelector(".todo-date").textContent = dueDate;
     }
 
     todoForm.remove();
