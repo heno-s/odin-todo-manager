@@ -40,7 +40,7 @@ function appendTodo(todo) {
 }
 
 function _createTodo(todo) {
-    const { title, description, priority, dueDate } = todo;
+    const { title, description, priority, dueDate, id } = todo;
     const todoDOM = document.createElement("div");
     todoDOM.classList.add("todo");
 
@@ -104,6 +104,8 @@ function _createTodo(todo) {
     todoDOM.appendChild(priorityDOM);
     todoDOM.appendChild(todoBody);
     todoDOM.appendChild(deleteIcon);
+
+    todoDOM.id = id;
 
     return todoDOM;
 }
