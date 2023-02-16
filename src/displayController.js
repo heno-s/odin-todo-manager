@@ -135,14 +135,15 @@ function toggleTodoAddForm() {
     const addTask = document.querySelector(".add-task");
     addTask.classList.toggle("hide");
 
-    const todoForm = document.querySelector(".todo-form");
+    const todoForm = document.querySelector("#todo-form");
     todoForm.classList.toggle("hide");
 }
 
 function _cloneTodoForm() {
     const todoForm = document
-        .querySelector(".todo-form")
+        .querySelector("#todo-form")
         .cloneNode(true);
+    todoForm.id = "";
     todoForm.reset();
     todoForm.classList.remove("hide");
 

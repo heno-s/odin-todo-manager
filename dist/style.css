@@ -204,6 +204,7 @@ h1 {
     gap: 5px;
     background-color: rgb(255 255 255 / 0.5);
     padding: 20px 20px 20px 46px;
+    margin-bottom: 10px;
 }
 
 .todo-form :is(input, textarea) {
