@@ -9,11 +9,23 @@ initPage();
 const addTask = document.querySelector(".add-task");
 const todoForm = document.querySelector(".todo-form");
 const todosContainer = document.querySelector(".todos");
+const projects = document.querySelector(".projects");
 const addProject = document.querySelector(".add-project");
 const projectForm = document.querySelector(".project-form");
 
 /* LISTENERS */
+projects.addEventListener("click", (evt) => {
+    const t = evt.target;
+    if (!t.closest(".project")) {
+        return null;
+    }
 
+    const projectDOM = t.closest(".project");
+    const project = window.projects.find(
+        (project) => project.id === projectDOM.id
+    );
+    Project.setActive(project);
+});
 addProject.addEventListener(
     "click",
     displayController.toggleProjectForm
@@ -23,6 +35,7 @@ projectForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
     if (projectForm.projectTitle.value) {
         const project = new Project(projectForm.projectTitle.value);
+        window.projects.push(project);
         displayController.appendProject(project);
         Project.setActive(project);
     }
