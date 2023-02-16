@@ -4,11 +4,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #fff;
 }
 
 html {
     font-family: sans-serif;
+    color: #fff;
 }
 
 body {
@@ -78,6 +78,10 @@ h1 {
     margin-bottom: 30px;
 }
 
+.todo:last-child {
+    margin-bottom: 15px;
+}
+
 .priority {
     appearance: none;
     cursor: pointer;
@@ -143,4 +147,32 @@ h1 {
 .todo .mdi-trash-can-outline {
     cursor: pointer;
     font-size: 2rem;
+}
+
+.add-task {
+    cursor: pointer;
+    color: #f8f034;
+    font-size: 1.3rem;
+    display: flex;
+    gap: 15px;
+}
+
+.plus-sign {
+    position: relative;
+    width: 15px;
+    display: grid;
+    place-items: center;
+}
+
+.plus-sign::before,
+.plus-sign::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 4px;
+    background-color: currentColor;
+}
+
+.plus-sign::after {
+    transform: rotateZ(90deg);
 }
