@@ -9,8 +9,26 @@ initPage();
 const addTask = document.querySelector(".add-task");
 const todoForm = document.querySelector(".todo-form");
 const todosContainer = document.querySelector(".todos");
+const addProject = document.querySelector(".add-project");
+const projectForm = document.querySelector(".project-form");
 
 /* LISTENERS */
+
+addProject.addEventListener(
+    "click",
+    displayController.toggleProjectForm
+);
+
+projectForm.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    if (projectForm.projectTitle.value) {
+        const project = new Project(projectForm.projectTitle.value);
+        displayController.appendProject(project);
+        Project.setActive(project);
+    }
+    displayController.toggleProjectForm();
+});
+
 addTask.addEventListener(
     "click",
     displayController.toggleTodoAddForm

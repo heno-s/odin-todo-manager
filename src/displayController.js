@@ -36,7 +36,7 @@ function _removeActiveProject() {
     if (!activeProject) {
         return;
     }
-    activeProject.classList.remove(".ative");
+    activeProject.classList.remove("active");
     _removeCurrentTodos();
 }
 
@@ -167,6 +167,15 @@ function removeTodo(id) {
     todo.remove();
 }
 
+function toggleProjectForm() {
+    const addProject = document.querySelector(".add-project");
+    addProject.classList.toggle("hide");
+
+    const projectForm = document.querySelector(".project-form");
+    projectForm.reset();
+    projectForm.classList.toggle("hide");
+}
+
 function _createTodoBody(title, description, dueDate) {
     const todoBody = document.createElement("div");
     todoBody.classList.add("todo-body");
@@ -226,6 +235,7 @@ function _setPriority(priorityDOM, priority) {
 
 export default {
     toggleTodoAddForm,
+    toggleProjectForm,
     appendProject,
     setActiveProject,
     appendTodo,

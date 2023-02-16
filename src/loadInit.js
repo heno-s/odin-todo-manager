@@ -1,10 +1,11 @@
+import displayController from "./displayController";
 import Project from "./project";
 import Todo from "./todo";
 
 export default function initPage() {
-    const projects = [];
-
     const project1 = new Project("Today");
+    displayController.appendProject(project1);
+    Project.setActive(project1);
 
     const todo11 = new Todo(
         "Go out with trash",
@@ -21,6 +22,4 @@ export default function initPage() {
 
     project1.addTodo(todo11);
     project1.addTodo(todo12);
-
-    projects.push(project1);
 }
