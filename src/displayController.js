@@ -104,6 +104,14 @@ function _createTodo(todo) {
     return todoDOM;
 }
 
+function toggleTodoForm() {
+    const addTask = document.querySelector(".add-task");
+    addTask.classList.toggle("hide");
+
+    const todoForm = document.querySelector(".todo-form");
+    todoForm.classList.toggle("hide");
+}
+
 function _removeActiveProject() {
     const activeProject = document.querySelector(".project.active");
     activeProject.classList.remove(".ative");
@@ -112,6 +120,7 @@ function _removeActiveProject() {
 }
 
 export default {
+    toggleTodoForm,
     appendProject,
     setActiveProject,
     appendTodo,
