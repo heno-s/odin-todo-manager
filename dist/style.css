@@ -26,6 +26,7 @@ main {
     flex-grow: 1;
     background: linear-gradient(135deg, #36a0db, #4e87a7);
     box-shadow: inset 0 0 100px 0px rgb(0 0 0 / 0.3);
+    padding: 100px;
 }
 
 h1 {
@@ -62,4 +63,48 @@ h1 {
     left: -2rem;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.todo {
+    display: flex;
+    align-items: center;
+    border-bottom: 5px solid #fff;
+    padding-bottom: 20px;
+}
+
+.priority {
+    appearance: none;
+    cursor: pointer;
+    width: 16px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.priority:checked {
+    background-color: #fff;
+    display: grid;
+    place-items: center;
+}
+
+.priority:checked::before {
+    content: "✔";
+    color: #000;
+    font-weight: bold;
+}
+
+.priority-low {
+    background-color: #999999;
+}
+
+.priority-medium {
+    background-color: #6fb4e7;
+}
+
+.priority-high {
+    background-color: #f26f26;
+}
+
+.todo .mdi-trash-can-outline {
+    margin-left: auto;
 }
