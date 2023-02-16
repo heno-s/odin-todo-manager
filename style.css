@@ -44,9 +44,14 @@ h1 {
 }
 
 .project {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     position: relative;
+}
+
+.project:hover:not(.active) {
+    transform: scale(1.02);
 }
 
 .project:not(:last-child) {
@@ -63,6 +68,11 @@ h1 {
     left: -2rem;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.project.active {
+    color: #f8f034;
+    padding-left: 15px;
 }
 
 .todo {
@@ -127,6 +137,11 @@ h1 {
 
 .todo-body:hover {
     transform: scale(1.02);
+}
+
+.todo-body:active {
+    transform: scale(1);
+    transition: none;
 }
 
 .todo-title {
