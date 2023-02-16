@@ -161,7 +161,9 @@ function showEditForm(todo) {
     todoForm.title.value = title;
     todoForm.description.value = description;
     todoForm.priority.value = priority;
-    todoForm.dueDate.valueAsDate = dueDate;
+    if (dueDate) {
+        todoForm.dueDate.valueAsDate = dueDate;
+    }
 
     todoDOM.insertAdjacentElement("afterend", todoForm);
     todoDOM.classList.add("hide");
@@ -180,7 +182,10 @@ function editTodo(todo) {
         description.substr(0, 50) +
         (description.length > 50 ? "..." : "");
     todoDOM.querySelector(".priority").value = priority;
-    todoDOM.querySelector(".todo-date").valueAsDate = dueDate;
+
+    if (dueDate) {
+        todoDOM.querySelector(".todo-date").valueAsDate = dueDate;
+    }
 
     todoForm.remove();
     todoDOM.classList.remove("hide");
