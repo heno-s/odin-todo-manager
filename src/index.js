@@ -62,4 +62,7 @@ todosContainer.addEventListener("click", (evt) => {
             { once: true }
         );
     }
+    if (t.classList.contains("mdi-trash-can-outline")) {
+        todo.delete();
+    }
 });

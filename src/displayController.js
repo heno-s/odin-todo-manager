@@ -187,6 +187,11 @@ function editTodo(todo) {
     return true;
 }
 
+function removeTodo(id) {
+    const todo = document.getElementById(id);
+    todo.remove();
+}
+
 export default {
     toggleTodoAddForm,
     appendProject,
@@ -194,4 +199,5 @@ export default {
     appendTodo,
     showEditForm,
     editTodo,
+    removeTodo,
 };

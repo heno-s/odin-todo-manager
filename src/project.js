@@ -15,8 +15,12 @@ export default class Project {
         displayController.appendTodo(todo);
     }
 
-    removeTodo(index) {
-        this.#todos.splice(index, 1);
+    removeTodo(id) {
+        this.#todos.splice(
+            this.#todos.findIndex((todo) => todo.id === id),
+            1
+        );
+        displayController.removeTodo(id);
     }
 
     getTodo(id) {
