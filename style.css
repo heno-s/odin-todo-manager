@@ -4,4 +4,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #fff;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    width: 400px;
+    background: linear-gradient(135deg, #36a0db, #407eb7);
+    box-shadow: inset 0 0 100px 0px rgb(0 0 0 / 0.3);
+}
+
+main {
+    flex-grow: 1;
+    background: linear-gradient(135deg, #36a0db, #4e87a7);
+    box-shadow: inset 0 0 100px 0px rgb(0 0 0 / 0.3);
 }
