@@ -1,3 +1,5 @@
+const date = require("date-fns");
+
 function appendProject(project) {
     const projectDOM = _createProject(project);
     const projects = document.querySelector(".projects");
@@ -207,7 +209,7 @@ function _createTodoBody(title, description, dueDate) {
 
         const todoDate = document.createElement("div");
         todoDate.classList.add("todo-date");
-        todoDate.textContent = dueDate;
+        todoDate.textContent = date.format(dueDate, "dd MMMM yyyy");
 
         todoDueDate.appendChild(calendar);
         todoDueDate.appendChild(todoDate);

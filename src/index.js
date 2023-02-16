@@ -26,6 +26,7 @@ projects.addEventListener("click", (evt) => {
     );
     Project.setActive(project);
 });
+
 addProject.addEventListener(
     "click",
     displayController.toggleProjectForm
@@ -62,7 +63,6 @@ todoForm.addEventListener("submit", (evt) => {
 
     const todo = new Todo(title, description, priority, dueDate);
     Project.active.addTodo(todo);
-    todoForm.reset();
     displayController.toggleTodoAddForm();
 });
 
