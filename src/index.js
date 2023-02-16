@@ -16,6 +16,10 @@ addTask.addEventListener(
     displayController.toggleTodoAddForm
 );
 
+todoForm
+    .querySelector(".close-form")
+    .addEventListener("click", displayController.toggleTodoAddForm);
+
 todoForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
     const [title, description, priority, dueDate] = [
