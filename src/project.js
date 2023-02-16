@@ -10,6 +10,7 @@ export default class Project {
 
     addTodo(todo) {
         this.#todos.push(todo);
+        displayController.appendTodo(todo);
     }
 
     removeTodo(index) {

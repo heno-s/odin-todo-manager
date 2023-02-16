@@ -48,7 +48,7 @@ function _createTodo(todo) {
     priorityDOM.type = "checkbox";
     priorityDOM.classList.add("priority");
 
-    switch (priority) {
+    switch (+priority) {
         case 0:
             priorityDOM.classList.add("priority-low");
             break;
@@ -71,27 +71,31 @@ function _createTodo(todo) {
     todoTitle.classList.add("todo-title");
     todoTitle.textContent = title;
 
-    const todoDescription = document.createElement("div");
-    todoDescription.classList.add("todo-description");
-    todoDescription.textContent = description.substr(0, 30);
-
-    const todoDueDate = document.createElement("div");
-    todoDueDate.classList.add("todo-due-date");
-
-    const calendar = document.createElement("div");
-    calendar.classList.add("mdi");
-    calendar.classList.add("mdi-calendar-clock-outline");
-
-    const todoDate = document.createElement("div");
-    todoDate.classList.add("todo-date");
-    todoDate.textContent = dueDate;
-
-    todoDueDate.appendChild(calendar);
-    todoDueDate.appendChild(todoDate);
-
     todoBody.appendChild(todoTitle);
-    todoBody.appendChild(todoDescription);
-    todoBody.appendChild(todoDueDate);
+
+    if (description) {
+        const todoDescription = document.createElement("div");
+        todoDescription.classList.add("todo-description");
+        todoDescription.textContent = description.substr(0, 30);
+        todoBody.appendChild(todoDescription);
+    }
+    if (dueDate) {
+        const todoDueDate = document.createElement("div");
+        todoDueDate.classList.add("todo-due-date");
+
+        const calendar = document.createElement("div");
+        calendar.classList.add("mdi");
+        calendar.classList.add("mdi-calendar-clock-outline");
+
+        const todoDate = document.createElement("div");
+        todoDate.classList.add("todo-date");
+        todoDate.textContent = dueDate;
+
+        todoDueDate.appendChild(calendar);
+        todoDueDate.appendChild(todoDate);
+
+        todoBody.appendChild(todoDueDate);
+    }
 
     const deleteIcon = document.createElement("div");
     deleteIcon.classList.add("mdi");
