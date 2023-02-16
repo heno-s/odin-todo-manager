@@ -48,14 +48,11 @@ h1 {
     display: flex;
     justify-content: space-between;
     position: relative;
+    margin-bottom: 25px;
 }
 
 .project:hover:not(.active) {
     transform: scale(1.02);
-}
-
-.project:not(:last-child) {
-    margin-bottom: 25px;
 }
 
 .project::before {
@@ -73,6 +70,30 @@ h1 {
 .project.active {
     color: #f8f034;
     padding-left: 15px;
+}
+
+.add-project {
+    cursor: pointer;
+    border: 3px solid green;
+    padding: 22px;
+    margin: 0 10px;
+    border-radius: 10px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.add-project::before,
+.add-project::after {
+    content: "";
+    width: 30px;
+    height: 6px;
+    background-color: green;
+    position: absolute;
+}
+
+.add-project::after {
+    transform: rotateZ(90deg);
 }
 
 .todo {
