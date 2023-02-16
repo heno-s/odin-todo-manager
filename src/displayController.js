@@ -136,6 +136,7 @@ function toggleTodoAddForm() {
     addTask.classList.toggle("hide");
 
     const todoForm = document.querySelector("#todo-form");
+    todoForm.reset();
     todoForm.classList.toggle("hide");
 }
 
@@ -143,33 +144,56 @@ function _cloneTodoForm() {
     const todoForm = document
         .querySelector("#todo-form")
         .cloneNode(true);
-    todoForm.id = "";
+    todoForm.id = "edit-form";
     todoForm.reset();
     todoForm.classList.remove("hide");
 
     return todoForm;
 }
 
-function showEditForm(todo) {
+function createEditForm(todo) {
     if (document.querySelector(".todo-form").dataset.id) {
         return null;
     }
     const { title, description, priority, dueDate, id } = todo;
     const todoDOM = document.getElementById(todo.id);
-    const todoForm = _cloneTodoForm();
+    const editForm = _cloneTodoForm();
 
-    todoForm.dataset.id = id;
-    todoForm.title.value = title;
-    todoForm.description.value = description;
-    todoForm.priority.value = priority;
+    editForm.dataset.id = id;
+    editForm.title.value = title;
+    editForm.description.value = description;
+    editForm.priority.value = priority;
     if (dueDate) {
-        todoForm.dueDate.valueAsDate = dueDate;
+        editForm.dueDate.valueAsDate = dueDate;
     }
 
-    todoDOM.insertAdjacentElement("afterend", todoForm);
+    editForm.addEventListener(
+        "submit",
+        (evt) => {
+            evt.preventDefault();
+            const [title, description, priority, dueDate] = [
+                editForm.title.value,
+                editForm.description.value,
+                editForm.priority.value,
+                editForm.dueDate.valueAsDate,
+            ];
+            todo.edit(title, description, priority, dueDate);
+        },
+        { once: true }
+    );
+
+    editForm.querySelector(".close-form").addEventListener(
+        "click",
+        (e) => {
+            editForm.remove();
+        },
+        { once: true }
+    );
+
+    todoDOM.insertAdjacentElement("afterend", editForm);
     todoDOM.classList.add("hide");
 
-    return todoForm;
+    return editForm;
 }
 
 function editTodo(todo) {
@@ -177,7 +201,7 @@ function editTodo(todo) {
 
     const todoDOM = document.getElementById(id);
     const todoBody = todoDOM.querySelector(".todo-body");
-    const todoForm = document.querySelector(".todos .todo-form");
+    const editForm = document.querySelector("#edit-form");
 
     todoDOM.querySelector(".todo-title").textContent = title;
     todoDOM.querySelector(".priority").value = priority;
@@ -218,8 +242,8 @@ function editTodo(todo) {
         dateDOM.querySelector(".todo-date").textContent = dueDate;
     }
 
-    todoForm.remove();
     todoDOM.classList.remove("hide");
+    editForm && editForm.remove();
     return true;
 }
 
@@ -233,7 +257,7 @@ export default {
     appendProject,
     setActiveProject,
     appendTodo,
-    showEditForm,
+    createEditForm,
     editTodo,
     removeTodo,
 };
