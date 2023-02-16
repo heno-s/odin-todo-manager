@@ -72,6 +72,19 @@ h1 {
     padding-left: 15px;
 }
 
+.project-form {
+    padding: 0 60px 0 20px;
+}
+
+.project-form input {
+    font-size: 1.3rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 5px 16px;
+    border-radius: 5px;
+}
+
 .add-project {
     cursor: pointer;
     border: 3px solid green;
@@ -269,4 +282,8 @@ h1 {
 
 .plus-sign::after {
     transform: rotateZ(90deg);
+}
+
+.hide {
+    display: none;
 }
