@@ -1,9 +1,14 @@
 import displayController from "./displayController";
-import Project from "./project";
+import Project, { getProjects, saveProject } from "./project";
 import Todo from "./todo";
 
 export default function initPage() {
-    window.projects = [];
+    const projects = getProjects();
+    if (projects.length > 0) {
+        projects.forEach(displayController.appendProject);
+        Project.setActive(projects[0]);
+        return null;
+    }
     const project1 = new Project("Today");
     displayController.appendProject(project1);
     Project.setActive(project1);
@@ -23,5 +28,8 @@ export default function initPage() {
 
     project1.addTodo(todo11);
     project1.addTodo(todo12);
-    window.projects.push(project1);
+
+    projects.push(project1);
+
+    saveProject(project1);
 }

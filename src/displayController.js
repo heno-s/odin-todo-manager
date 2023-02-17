@@ -209,7 +209,10 @@ function _createTodoBody(title, description, dueDate) {
 
         const todoDate = document.createElement("div");
         todoDate.classList.add("todo-date");
-        todoDate.textContent = date.format(dueDate, "dd MMMM yyyy");
+        todoDate.textContent = date.format(
+            new Date(dueDate),
+            "dd MMMM yyyy"
+        );
 
         todoDueDate.appendChild(calendar);
         todoDueDate.appendChild(todoDate);

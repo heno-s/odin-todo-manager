@@ -1,5 +1,4 @@
 import displayController from "./displayController";
-import Project from "./project";
 
 export default class Todo {
     checked = false;
@@ -11,7 +10,6 @@ export default class Todo {
         this.priority = priority;
         this.dueDate = dueDate;
         this.#id = "id" + Math.random().toString(16).slice(2);
-        this.#project = Project.active;
     }
 
     edit(title, description, priority, dueDate) {

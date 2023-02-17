@@ -1,27 +1,36 @@
 import displayController from "./displayController";
 import initPage from "./loadInit";
-import Project from "./project";
+import Project, { getProjects, saveProject } from "./project";
 import Todo from "./todo";
 
 initPage();
+
+export function saveToStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+export function getFromStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
+}
 
 /* ELEMENTS */
 const addTask = document.querySelector(".add-task");
 const todoForm = document.querySelector(".todo-form");
 const todosContainer = document.querySelector(".todos");
-const projects = document.querySelector(".projects");
+const projectsDOM = document.querySelector(".projects");
 const addProject = document.querySelector(".add-project");
 const projectForm = document.querySelector(".project-form");
 
 /* LISTENERS */
-projects.addEventListener("click", (evt) => {
+projectsDOM.addEventListener("click", (evt) => {
     const t = evt.target;
     if (!t.closest(".project")) {
         return null;
     }
 
     const projectDOM = t.closest(".project");
-    const project = window.projects.find(
+    const projects = getProjects();
+    const project = projects.find(
         (project) => project.id === projectDOM.id
     );
     Project.setActive(project);
@@ -36,7 +45,7 @@ projectForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
     if (projectForm.projectTitle.value) {
         const project = new Project(projectForm.projectTitle.value);
-        window.projects.push(project);
+        saveProject(project);
         displayController.appendProject(project);
         Project.setActive(project);
     }
