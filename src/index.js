@@ -1,6 +1,10 @@
 import displayController from "./displayController";
 import initPage from "./loadInit";
-import Project, { getProjects, saveProject } from "./project";
+import Project, {
+    getProjects,
+    removeProject,
+    saveProject,
+} from "./project";
 import Todo from "./todo";
 
 initPage();
@@ -27,12 +31,20 @@ projectsDOM.addEventListener("click", (evt) => {
     if (!t.closest(".project")) {
         return null;
     }
-
-    const projectDOM = t.closest(".project");
     const projects = getProjects();
+    const projectDOM = t.closest(".project");
     const project = projects.find(
         (project) => project.id === projectDOM.id
     );
+    if (t.closest(".mdi-trash-can-outline")) {
+        const projects = removeProject(project);
+        const wasActive = displayController.removeProject(project);
+        if (wasActive && projects.length > 0) {
+            Project.setActive(projects[0]);
+        }
+        return true;
+    }
+
     Project.setActive(project);
 });
 

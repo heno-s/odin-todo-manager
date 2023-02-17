@@ -3,6 +3,8 @@ const date = require("date-fns");
 function appendProject(project) {
     const projectDOM = _createProject(project);
     const projects = document.querySelector(".projects");
+    const addTask = document.querySelector(".add-task");
+    addTask.classList.remove("hide");
     projects.appendChild(projectDOM);
 }
 
@@ -24,6 +26,25 @@ function _createProject(project) {
     projectDOM.appendChild(deleteIcon);
 
     return projectDOM;
+}
+
+function removeProject(project) {
+    const projectDOM = document.getElementById(project.id);
+    const projects = document.querySelectorAll(".project");
+    const wasActive = projectDOM.classList.contains("active");
+    projectDOM.remove();
+
+    if (projects.length === 1) {
+        const addTask = document.querySelector(".add-task");
+        addTask.classList.add("hide");
+    }
+
+    if (wasActive) {
+        _removeCurrentTodos();
+        return true;
+    }
+
+    return false;
 }
 
 function setActiveProject(project) {
@@ -249,4 +270,5 @@ export default {
     createEditForm,
     editTodo,
     removeTodo,
+    removeProject,
 };

@@ -30,6 +30,15 @@ export function saveProject(project) {
     saveToStorage("projects", projects);
 }
 
+export function removeProject(project) {
+    projects.splice(
+        projects.findIndex((prjct) => prjct.id === project.id),
+        1
+    );
+    saveToStorage("projects", projects);
+    return projects;
+}
+
 export default class Project {
     #todos = [];
     #id = 0;

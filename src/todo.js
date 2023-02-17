@@ -1,4 +1,5 @@
 import displayController from "./displayController";
+import Project from "./project";
 
 export default class Todo {
     checked = false;
@@ -21,7 +22,7 @@ export default class Todo {
     }
 
     delete() {
-        this.#project.removeTodo(this.#id);
+        Project.active.removeTodo(this.#id);
     }
 
     get id() {
