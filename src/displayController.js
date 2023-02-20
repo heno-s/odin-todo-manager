@@ -248,15 +248,23 @@ function _setPriority(priorityDOM, priority) {
     switch (+priority) {
         case 0:
             priorityDOM.classList.add("priority-low");
+            priorityDOM.classList.remove("priority-medium");
+            priorityDOM.classList.remove("priority-high");
             break;
         case 1:
             priorityDOM.classList.add("priority-medium");
+            priorityDOM.classList.remove("priority-low");
+            priorityDOM.classList.remove("priority-high");
             break;
         case 2:
             priorityDOM.classList.add("priority-high");
+            priorityDOM.classList.remove("priority-low");
+            priorityDOM.classList.remove("priority-medium");
             break;
         default:
             priorityDOM.classList.add("priority-low");
+            priorityDOM.classList.remove("priority-medium");
+            priorityDOM.classList.remove("priority-high");
             break;
     }
 }
